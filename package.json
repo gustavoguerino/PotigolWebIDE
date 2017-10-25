@@ -1,0 +1,16 @@
+{
+  "name": "potigol-web",
+  "version": "1.0.0",
+  "description": "Web Editor to Potigol..",
+  "scripts": {
+    "start": "http-server webarchives",
+    "build-grammar": "antlr4 -Dlanguage=JavaScript potigol.g4 -o webarchives/parser"
+  },
+  "author": "Gustavo Guerino",
+  "dependencies": {
+    "antlr4": "^4.5.2"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
+}
