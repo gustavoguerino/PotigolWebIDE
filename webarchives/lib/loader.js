@@ -1,49 +1,26 @@
 const antlr4 = antlr4_require('antlr4/index');
+const {data} = antlr4_require('lib/listenerData');
+const {utils} = antlr4_require('lib/listenerUtils');
 const {potigolParser} = antlr4_require('./../parser/potigolParser');
 const {potigolListener} = antlr4_require('./../parser/potigolListener');
-
-const EMPTY = "";
 
 class Loader extends potigolListener {
   constructor() {
     super();
-    /** Load a list of row maps that map field name to value */
-    this.rows = [];
-    /** List of column names */
-    this.header = null;
-    /** Build up a list of fields in current row */
-    this.currentRowFieldValues = null;
   }
-
-  exitHdr(ctx) {
-    this.header = this.currentRowFieldValues.slice();
+  exitEscreva(ctx){
+    var res = ctx.expr().getText().replace(/"/g, ' ');
+    console.log(res);
   }
-
-  enterRow(ctx) {
-    this.currentRowFieldValues = [];
+  exitTexto(ctx){
   }
-
-  exitRow(ctx) {
-    // If this is the header row, do nothing
-    if (ctx.parentCtx instanceof CSVParser.HdrContext) return;
-    // It's a data row
-    var m = {};
-    this.currentRowFieldValues.forEach((value, column) => {
-      m[this.header[column]] = value;
-    });
-    this.rows.push(m);
+  exitExpr1(ctx){
   }
-
-  exitString(ctx) {
-    this.currentRowFieldValues.push(ctx.STRING().getText());
+  exitExpr2(ctx){
   }
-
-  exitText(ctx) {
-    this.currentRowFieldValues.push(ctx.TEXT().getText());
+  exitAtrib_simples(ctx){
   }
-
-  exitEmpty(ctx) {
-    this.currentRowFieldValues.push(EMPTY);
+  exitDeclVariavel(ctx){ 
   }
 }
 

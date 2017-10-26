@@ -33,7 +33,6 @@ potigolListener.prototype.enterEscreva = function(ctx) {
 
 // Exit a parse tree produced by potigolParser#escreva.
 potigolListener.prototype.exitEscreva = function(ctx) {
-	var mensagem
 };
 
 

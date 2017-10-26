@@ -30,5 +30,3 @@ const {
 
   const loader = new Loader();
   antlr4.tree.ParseTreeWalker.DEFAULT.walk(loader, tree); 
-  
-  console.log(loader.rows);
