@@ -12,6 +12,7 @@ editor.getSession().setMode('ace/mode/mode-potigol');
  * Configurando ANTRL4 para executar o codigo
  * 
  */
+document.getElementById("executar").addEventListener("click", function(){
 const {
     FileStream,
     CommonTokenStream,
@@ -30,3 +31,4 @@ const {
 
   const loader = new Loader();
   antlr4.tree.ParseTreeWalker.DEFAULT.walk(loader, tree); 
+});

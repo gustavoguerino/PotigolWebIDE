@@ -14,4 +14,4 @@ class listenerData {
   }
 }
 
-exports.data = listenerData;
+exports.listenerData = listenerData;
