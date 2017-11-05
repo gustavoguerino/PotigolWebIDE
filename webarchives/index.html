@@ -5,7 +5,7 @@
   <title>PotigolWEB</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="index.css">
-  
+
   <script src="lib/require.js"></script>
   <script type="application/javascript">
     var antlr4 = require('antlr4/index');
@@ -18,6 +18,8 @@
     });
   </script>
   <script src="ace-config.js"></script>
+  <script src="lib/listenerData.js"></script>
+  <script src="lib/listenerUtils.js"></script>
   <script src="bower_components/antlr4-ace-ext/src/token-type-map.js"></script>
   <script src="bower_components/antlr4-ace-ext/src/tokenizer.js"></script>
 </head>
@@ -26,19 +28,17 @@
     <div class="row">
       <div class="col-md-2">
         <button type="button" id="executar" class="btn btn-default">Executar</button>
-        
+
       </div>
       <div class="col-md-10">
         <div id="editor"># Programa simples em Potigol
-          se x > 5 então
-          escreva "Maior do que cinco."
-          fim
+var x, y, z := 10
         </div>
       </div>
     </div>
   </div>
-  
-  
+
+
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="index.js"></script>

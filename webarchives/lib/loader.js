@@ -1,28 +1,33 @@
-const antlr4 = antlr4_require('antlr4/index');
-const listenerData = antlr4_require('lib/listenerData').listenerData;
-const listenerUtils = antlr4_require('lib/listenerUtils').listenerUtils;
-const {potigolParser} = antlr4_require('./../parser/potigolParser');
-const {potigolListener} = antlr4_require('./../parser/potigolListener');
+const   antlr4            = antlr4_require('antlr4/index');
+const { potigolParser   } = antlr4_require('./../parser/potigolParser');
+const { potigolListener } = antlr4_require('./../parser/potigolListener');
+const { ListenerData    } = antlr4_require('lib/listenerData');
+const potigol = antlr4_require('./potigol');
 
 class Loader extends potigolListener {
   constructor() {
     super();
-    this.utils = new listenerUtils();
-    this.data = new listenerData();
   }
   exitEscreva(ctx){
-    var res = ctx.expr().getText().replace(/"/g, ' ');
-    this.utils.show(res);
+    var exp = ctx.expr();
+    listenerData.setValue(ctx, new potigol.Escreva(exp));
   }
-  exitTexto(ctx){
+  exitSe(ctx){
+    console.log(ctx);
   }
-  exitExpr1(ctx){
+  exitLit(ctx){
+    listenerData.setValue(ctx, listenerData.getValue(ctx.literal()));
   }
-  exitExpr2(ctx){show
+  exitDecl_var_simples(ctx){
+    var ids = listenerData.getValue(ctx.id1());
+    var valor = listenerData.getValue(ctx.expr());
+    listenerData.setValue(ctx, new potigol.DeclVariavel(ids,valor));
   }
-  exitAtrib_simples(ctx){
+  exitId1(ctx){
+    listenerData.setValue(ctx, ctx.getText().split(","));
   }
-  exitDeclVariavel(ctx){ 
+  exitInteiro(ctx){
+    listenerData.setValue(ctx, parseInt(ctx.getText()));
   }
 }
 
