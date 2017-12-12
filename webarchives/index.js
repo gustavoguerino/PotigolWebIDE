@@ -13,8 +13,8 @@ editor.getSession().setMode('ace/mode/mode-potigol');
  *
  */
 document.getElementById("executar").addEventListener("click", function(){
-listenerData.cleanData();
-const {
+  listenerData.cleanData();
+  const {
     FileStream,
     CommonTokenStream,
   } = require('antlr4/index');
