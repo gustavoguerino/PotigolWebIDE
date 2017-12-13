@@ -7,23 +7,42 @@ class Loader extends potigolListener {
   constructor() {
     super();
   }
+  /* --------------------------------------------------------------
+  *
+  *   Blocos principais (Responsaveis por encadear a execução)
+  *
+  * ---------------------------------------------------------------
+  */
   exitProg(ctx){
-  
+    // Para cada elemento de inst chamar o execute (Raiz do programa)
+    ctx.inst().forEach(element => {
+      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
+      // evitando erros de execução
+      let elemento = listenerData.getValue(element);
+      if(elemento) elemento.execute();
+    });
   }
+  exitInst(ctx){
+    // Para cada elemento de inst atribuir o filho ao node
+    ctx.children.forEach(element => {
+      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
+      // evitando erros de execução
+      let elemento = listenerData.getValue(element);
+      if(elemento) listenerData.setValue(ctx, elemento);
+    });
+  }
+  /* --------------------------------------------------------------
+  *
+  *                     Blocos secundarios
+  *
+  * ---------------------------------------------------------------
+  */
   exitEscreva(ctx){
     var exp = ctx.expr();
+    console.log(ctx);
     listenerData.setValue(ctx, new potigol.Escreva(exp));
   }
   exitSe(ctx){
-    //     final List<String> senaose = new ArrayList<String>();
-    // for (final SenaoseContext c : ctx.senaose()) {
-    //     senaose.add(data.getValue(c));
-    // }
-    // final String cond = data.getValue(ctx.expr());
-    // final String entao = data.getValue(ctx.entao());
-    // final String senao = data.getOrElse(ctx.senao());
-    // final String resposta = M.se(cond, entao, senaose, senao);
-    
     console.log(ctx);
   }
   exitLit(ctx){
