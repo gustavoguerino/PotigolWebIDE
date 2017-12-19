@@ -1,8 +1,10 @@
 class DeclVariavel{
   constructor(ids, valor){
+    this.ids = ids;
+    this.valor = valor;
   }
   execute(){
-    ids.forEach(function(entry) {
+    this.ids.forEach(function(entry, valor = this.valor) {
       listenerData.setAmbiente(entry, valor);
     });
   }
@@ -11,13 +13,26 @@ exports.DeclVariavel = DeclVariavel;
 
 class Escreva{
   constructor(exp){
-    this.texto = exp.getText().replace(/"/g, ' ');
+    console.log()
+    this.texto = exp.getText().replace(/"/g, '');
   }
   execute(){
     listenerUtils.show(this.texto);
   }
 }
 exports.Escreva = Escreva;
+
+class Imprima{
+  constructor(exp){
+    console.log()
+    this.texto = exp.getText().replace(/"/g, '');
+  }
+  execute(){
+    listenerUtils.show(this.texto);
+  }
+}
+exports.Imprima = Imprima;
+
 
 class Se{
   constructor(){

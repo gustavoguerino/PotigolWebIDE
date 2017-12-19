@@ -31,6 +31,15 @@ class Loader extends potigolListener {
       if(elemento) listenerData.setValue(ctx, elemento);
     });
   }
+  exitDecl(ctx){
+    // Para cada declaração atribuir o filho ao node
+    ctx.children.forEach(element => {
+      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
+      // evitando erros de execução
+      let elemento = listenerData.getValue(element);
+      if(elemento) listenerData.setValue(ctx, elemento);
+    });
+  }
   /* --------------------------------------------------------------
   *
   *                     Blocos secundarios
@@ -39,7 +48,11 @@ class Loader extends potigolListener {
   */
   exitEscreva(ctx){
     var exp = ctx.expr();
-    console.log(ctx);
+    listenerData.setValue(ctx, new potigol.Escreva(exp));
+  }
+  exitImprima(ctx){
+    var exp = ctx.expr();
+    //TODO: ao implementar terminal no front, não quebrar a linha quando utilizado imprima.
     listenerData.setValue(ctx, new potigol.Escreva(exp));
   }
   exitSe(ctx){
