@@ -1,3 +1,14 @@
+class ValorSimples{
+  constructor(id, valor){
+    this.id = id;
+    this.valor = valor;
+  }
+  execute(){
+    listenerData.setAmbiente(this.id, this.valor);
+  }
+}
+exports.ValorSimples = ValorSimples;
+
 class DeclVariavel{
   constructor(ids, valor){
     this.ids = ids;
@@ -10,6 +21,9 @@ class DeclVariavel{
   }
 }
 exports.DeclVariavel = DeclVariavel;
+
+
+
 
 class Escreva{
   constructor(exp){

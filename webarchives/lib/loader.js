@@ -12,7 +12,7 @@ class Loader extends potigolListener {
   *   Blocos principais (Responsaveis por encadear a execução)
   *
   * ---------------------------------------------------------------
-  */
+  */  
   exitProg(ctx){
     // Para cada elemento de inst chamar o execute (Raiz do programa)
     ctx.inst().forEach(element => {
@@ -40,37 +40,81 @@ class Loader extends potigolListener {
       if(elemento) listenerData.setValue(ctx, elemento);
     });
   }
+  exitDecisao(ctx){
+    //Para cada declaração atribuir o filho ao node
+    ctx.children.forEach(element => {
+      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
+      // evitando erros de execução
+      let elemento = listenerData.getValue(element);
+      if(elemento) listenerData.setValue(ctx, elemento);
+    });
+  }
   /* --------------------------------------------------------------
   *
-  *                     Blocos secundarios
+  *                     Condicionais
   *
   * ---------------------------------------------------------------
   */
-  exitEscreva(ctx){
-    var exp = ctx.expr();
-    listenerData.setValue(ctx, new potigol.Escreva(exp));
-  }
-  exitImprima(ctx){
-    var exp = ctx.expr();
-    //TODO: ao implementar terminal no front, não quebrar a linha quando utilizado imprima.
-    listenerData.setValue(ctx, new potigol.Escreva(exp));
-  }
   exitSe(ctx){
-    console.log(ctx);
+    console.log('se', ctx.lit());
+  }
+  /* --------------------------------------------------------------
+  *
+  *                     Literais
+  *
+  * ---------------------------------------------------------------
+  */
+  exitBooleano(ctx){
+    console.log('booleano', ctx);
   }
   exitLit(ctx){
     listenerData.setValue(ctx, listenerData.getValue(ctx.literal()));
-  }
-  exitDecl_var_simples(ctx){
-    var ids = listenerData.getValue(ctx.id1());
-    var valor = listenerData.getValue(ctx.expr());
-    listenerData.setValue(ctx, new potigol.DeclVariavel(ids,valor));
+    console.log('teste', listenerData.getValue(ctx));
   }
   exitId1(ctx){
     listenerData.setValue(ctx, ctx.getText().split(","));
   }
   exitInteiro(ctx){
     listenerData.setValue(ctx, parseInt(ctx.getText()));
+  }
+  /* --------------------------------------------------------------
+  *
+  *                     Atribuição
+  *
+  * ---------------------------------------------------------------
+  */
+  exitValor_simples(ctx){
+    var id = listenerData.getValue(ctx.id1());
+    var valor = listenerData.getValue(ctx.expr());
+    listenerData.setValue(ctx, new potigol.ValorSimples(id,valor));
+  }
+  
+  exitDecl_var_simples(ctx){
+    var ids = listenerData.getValue(ctx.id1());
+    var valor = listenerData.getValue(ctx.expr());
+    listenerData.setValue(ctx, new potigol.DeclVariavel(ids,valor));
+  }
+  
+  /* --------------------------------------------------------------
+  *
+  *                     Blocos secundarios
+  *
+  * ---------------------------------------------------------------
+  */
+  exitComparacao(ctx){
+   console.log('comparacao', ctx.expr()); 
+  }
+  exitEscreva(ctx){
+    var exp = ctx.expr();
+    listenerData.setValue(ctx, new potigol.Escreva(exp));
+  }
+  exitImprima(ctx){
+    var exp = ctx.expr();
+    // TODO: ao implementar terminal no front, não quebrar a linha quando utilizado imprima.
+    listenerData.setValue(ctx, new potigol.Escreva(exp));
+  }
+  exitSe(ctx){
+    //console.log(ctx.children);
   }
 }
 
