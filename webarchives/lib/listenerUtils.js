@@ -2,7 +2,10 @@ class ListenerUtils {
   constructor() {
   }
   show(mensagem){
-    console.log(mensagem);
+    terminal.echo(mensagem);
+  }
+  error(mensagem){
+    terminal.error(mensagem);
   }
 }
 listenerUtils = new ListenerUtils();

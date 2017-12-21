@@ -8,7 +8,6 @@ class ValorSimples{
   }
 }
 exports.ValorSimples = ValorSimples;
-
 class DeclVariavel{
   constructor(ids, valor){
     this.ids = ids;

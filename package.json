@@ -8,7 +8,8 @@
   },
   "author": "Gustavo Guerino",
   "dependencies": {
-    "antlr4": "^4.5.2"
+    "antlr4": "^4.5.2",
+    "jquery.terminal": "^1.11.0"
   },
   "devDependencies": {
     "http-server": "^0.9.0"

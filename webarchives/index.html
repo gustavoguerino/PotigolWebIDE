@@ -5,7 +5,7 @@
   <title>PotigolWEB</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="index.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <script src="lib/require.js"></script>
   <script type="application/javascript">
     var antlr4 = require('antlr4/index');
@@ -26,20 +26,35 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-2">
-        <button type="button" id="executar" class="btn btn-default">Executar</button>
-
+      <div class="col-md-1">
+          <button type="button" id="executar" class="btn btn-success btn-block">Executar</button>
       </div>
-      <div class="col-md-10"></div>
-        <div id="editor">escreva "Maior do que cinco."
+      <div class="col-md-11">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="editor">escreva "Maior do que cinco."</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div id="terminal"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </div>  
+</div>
 
 
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="index.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+<script src="bower_components/jquery.terminal/js/jquery.terminal-1.11.0.min.js"></script>
+<script src="bower_components/jquery.terminal/js/jquery.mousewheel-min.js"></script>
+<link href="bower_components/jquery.terminal/css/jquery.terminal-1.11.0.min.css" rel="stylesheet"/>
+
+<script src="index.js"></script>
 </body>
 </html>

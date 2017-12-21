@@ -22,6 +22,7 @@ class Loader extends potigolListener {
       if(elemento) elemento.execute();
     });
   }
+
   exitInst(ctx){
     // Para cada elemento de inst atribuir o filho ao node
     ctx.children.forEach(element => {
@@ -49,7 +50,7 @@ class Loader extends potigolListener {
       if(elemento) listenerData.setValue(ctx, elemento);
     });
   }
-  /* --------------------------------------------------------------
+  /* -------------------------------------------------------------- 
   *
   *                     Condicionais
   *
