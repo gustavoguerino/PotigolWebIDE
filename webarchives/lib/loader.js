@@ -69,11 +69,28 @@ class Loader extends potigolListener {
     let condicao = listenerData.getValue(ctx.expr());
     let entao = listenerData.getValue(ctx.entao());
     let senao = listenerData.getValue(ctx.senao());
-    let senaose = listenerData.getValue(ctx.senaose());
+    let senaose = [];
+    ctx.senaose().forEach(element => {
+      senaose.push(element)
+    });
     listenerData.setValue(ctx, new potigol.Se(condicao,entao,senao,senaose));
   }
   exitEscolha(ctx){
-    console.log("escolha");
+
+  }
+  exitEntao(ctx){
+    listenerData.setValue(ctx, listenerData.getValue(ctx.exprlist()));
+  }
+  exitSenao(ctx){
+    listenerData.setValue(ctx, listenerData.getValue(ctx.exprlist()));
+  }
+  exitExprlist(ctx){
+    listenerData.setValue(ctx, new potigol.Exprlist(ctx.children));
+  }
+  exitSenaose(ctx){
+    let expr = listenerData.getValue(ctx.expr());
+    let exprlist = listenerData.getValue(ctx.entao());
+    listenerData.setValue(ctx, new potigol.Senaose(expr, exprlist));
   }
   /* --------------------------------------------------------------
   *
@@ -82,7 +99,6 @@ class Loader extends potigolListener {
   * ---------------------------------------------------------------
   */
   exitBooleano(ctx){
-    console.log('booleano', ctx);
   }
   exitLit(ctx){
     listenerData.setValue(ctx, listenerData.getValue(ctx.literal())); 
@@ -118,7 +134,11 @@ class Loader extends potigolListener {
   * ---------------------------------------------------------------
   */
   exitComparacao(ctx){
-    // > >= <= .....
+    // TODO: para trabalhar com atribuições, pensar em uma maneira de pegar o valor quando for id.
+    let expr1 = listenerData.getValue(ctx.expr(0));
+    let expr2 = listenerData.getValue(ctx.expr(1));
+    let operacao = ctx.getChild(1).getText();
+    listenerData.setValue(ctx, new potigol.Comparacao(expr1, expr2, operacao));
   }
   exitEscreva(ctx){
     var exp = ctx.expr();

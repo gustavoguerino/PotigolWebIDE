@@ -8,6 +8,7 @@ class ValorSimples{
   }
 }
 exports.ValorSimples = ValorSimples;
+
 class DeclVariavel{
   constructor(ids, valor){
     this.ids = ids;
@@ -21,6 +22,54 @@ class DeclVariavel{
 }
 exports.DeclVariavel = DeclVariavel;
 
+class Comparacao{
+  constructor(expr1, expr2, operacao){
+    this.expr1 = expr1;
+    this.expr2 = expr2;
+    this.operacao = operacao;
+  }
+  execute(){
+    switch(this.operacao) {
+      case '>':
+        if(this.expr1 > this.expr2) return true;
+        else return false
+        break;
+      case '<':
+        if(this.expr1 < this.expr2) return true;
+        else return false
+        break;
+    } 
+  }
+}
+exports.Comparacao = Comparacao;
+
+class Exprlist{
+  constructor(childrenlist){
+    this.childrenlist = childrenlist;
+  }
+  execute(){
+    this.childrenlist.forEach(element => {
+      listenerData.getValue(element).execute();
+    }); 
+  }
+}
+exports.Exprlist = Exprlist;
+
+class Senaose{
+  constructor(expr, exprlist){
+    this.expr = expr;
+    this.exprlist = exprlist;
+  }
+  execute(){
+    if(this.expr.execute()){
+      this.exprlist.execute();
+      return true;
+    }
+    return false;
+  }
+}
+exports.Senaose = Senaose;
+
 
 class Se{
   //listenerData.setValue(ctx, new potigol.Se(condicao,entao,senao,senaose));
@@ -31,8 +80,21 @@ class Se{
     this.senaose = senaose;
   }
   execute(){
-    console.log("ola");
-    listenerUtils.show("funcionou");
+    if(this.condicao.execute()){
+      this.entao.execute();
+    }
+    else{
+      //Verifica senaose
+      let snsExec = false;
+      this.senaose.forEach(element => {
+        if(snsExec == false){
+          if(listenerData.getValue(element).execute()) snsExec = true;
+        } 
+      });
+      if(!snsExec && this.senao){
+        this.senao.execute();
+      }
+    }
   }
 }
 exports.Se = Se;
