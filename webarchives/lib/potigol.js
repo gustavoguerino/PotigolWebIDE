@@ -22,11 +22,21 @@ class DeclVariavel{
 exports.DeclVariavel = DeclVariavel;
 
 
-
+class Se{
+  constructor(condicoes, comandos, senao){
+    this.comandos = comandos;
+    this.senao = senao;
+    this.condicoes = condicoes;
+  }
+  execute(){
+    console.log("ola");
+    listenerUtils.show("funcionou");
+  }
+}
+exports.Se = Se;
 
 class Escreva{
   constructor(exp){
-    console.log()
     this.texto = exp.getText().replace(/"/g, '');
   }
   execute(){
@@ -37,7 +47,6 @@ exports.Escreva = Escreva;
 
 class Imprima{
   constructor(exp){
-    console.log()
     this.texto = exp.getText().replace(/"/g, '');
   }
   execute(){
@@ -45,14 +54,3 @@ class Imprima{
   }
 }
 exports.Imprima = Imprima;
-
-
-class Se{
-  constructor(){
-
-  }
-  execute(){
-
-  }
-}
-exports.Se = Se;

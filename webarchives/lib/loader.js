@@ -50,6 +50,15 @@ class Loader extends potigolListener {
       if(elemento) listenerData.setValue(ctx, elemento);
     });
   }
+  exitDecis(ctx){
+    //Para cada declaração atribuir o filho ao node
+    ctx.children.forEach(element => {
+      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
+      // evitando erros de execução
+      let elemento = listenerData.getValue(element);
+      if(elemento) listenerData.setValue(ctx, elemento);
+    });
+  }
   /* -------------------------------------------------------------- 
   *
   *                     Condicionais
@@ -57,20 +66,23 @@ class Loader extends potigolListener {
   * ---------------------------------------------------------------
   */
   exitSe(ctx){
-    console.log('se', ctx.lit());
+    console.log("caiu");
+    listenerData.setValue(ctx, new potigol.Se(null,null,null));
+  }
+  exitEscolha(ctx){
+    console.log("escolha");
   }
   /* --------------------------------------------------------------
   *
   *                     Literais
-  *
+  * 
   * ---------------------------------------------------------------
   */
   exitBooleano(ctx){
     console.log('booleano', ctx);
   }
   exitLit(ctx){
-    listenerData.setValue(ctx, listenerData.getValue(ctx.literal()));
-    console.log('teste', listenerData.getValue(ctx));
+    listenerData.setValue(ctx, listenerData.getValue(ctx.literal())); 
   }
   exitId1(ctx){
     listenerData.setValue(ctx, ctx.getText().split(","));
@@ -103,7 +115,7 @@ class Loader extends potigolListener {
   * ---------------------------------------------------------------
   */
   exitComparacao(ctx){
-   console.log('comparacao', ctx.expr()); 
+    // > >= <= .....
   }
   exitEscreva(ctx){
     var exp = ctx.expr();
@@ -112,10 +124,7 @@ class Loader extends potigolListener {
   exitImprima(ctx){
     var exp = ctx.expr();
     // TODO: ao implementar terminal no front, não quebrar a linha quando utilizado imprima.
-    listenerData.setValue(ctx, new potigol.Escreva(exp));
-  }
-  exitSe(ctx){
-    //console.log(ctx.children);
+    listenerData.setValue(ctx, new potigol.Imprima(exp));
   }
 }
 

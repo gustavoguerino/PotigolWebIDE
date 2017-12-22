@@ -1,6 +1,7 @@
-// Generated from potigol.g4 by ANTLR 4.5.1
+// Generated from potigol.g4 by ANTLR 4.5.2
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
+
 // This class defines a complete listener for a parse tree produced by potigolParser.
 function potigolListener() {
 	antlr4.tree.ParseTreeListener.call(this);
@@ -17,6 +18,7 @@ potigolListener.prototype.enterProg = function(ctx) {
 // Exit a parse tree produced by potigolParser#prog.
 potigolListener.prototype.exitProg = function(ctx) {
 };
+
 
 // Enter a parse tree produced by potigolParser#inst.
 potigolListener.prototype.enterInst = function(ctx) {
