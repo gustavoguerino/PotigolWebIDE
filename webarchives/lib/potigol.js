@@ -23,10 +23,12 @@ exports.DeclVariavel = DeclVariavel;
 
 
 class Se{
-  constructor(condicoes, comandos, senao){
-    this.comandos = comandos;
+  //listenerData.setValue(ctx, new potigol.Se(condicao,entao,senao,senaose));
+  constructor(condicao, entao,senao,senaose){
+    this.condicao = condicao;
+    this.entao = entao;
     this.senao = senao;
-    this.condicoes = condicoes;
+    this.senaose = senaose;
   }
   execute(){
     console.log("ola");

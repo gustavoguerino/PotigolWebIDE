@@ -66,8 +66,11 @@ class Loader extends potigolListener {
   * ---------------------------------------------------------------
   */
   exitSe(ctx){
-    console.log(ctx);
-    listenerData.setValue(ctx, new potigol.Se(null,null,null));
+    let condicao = listenerData.getValue(ctx.expr());
+    let entao = listenerData.getValue(ctx.entao());
+    let senao = listenerData.getValue(ctx.senao());
+    let senaose = listenerData.getValue(ctx.senaose());
+    listenerData.setValue(ctx, new potigol.Se(condicao,entao,senao,senaose));
   }
   exitEscolha(ctx){
     console.log("escolha");
