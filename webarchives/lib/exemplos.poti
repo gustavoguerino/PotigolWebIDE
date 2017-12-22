@@ -1,0 +1,7 @@
+var ab := 1
+se ab > 2 entao
+  escreva "ola"
+senao 
+  escreva "oi"
+fim
+              

@@ -91,6 +91,7 @@ class Loader extends potigolListener {
     ctx.senaose().forEach(element => {
       senaose.push(element)
     });
+    console.log(condicao);
     listenerData.setValue(ctx, new potigol.Se(condicao,entao,senao,senaose));
   }
   exitEscolha(ctx){
@@ -138,6 +139,9 @@ class Loader extends potigolListener {
   }
   exitId1(ctx){
     listenerData.setValue(ctx, ctx.getText().split(","));
+  }
+  exitId(ctx){
+    listenerData.setValue(ctx, new potigol.ID(ctx.getText()));
   }
   exitInteiro(ctx){
     listenerData.setValue(ctx, parseInt(ctx.getText()));

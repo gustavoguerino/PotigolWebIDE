@@ -4,7 +4,7 @@ class ValorSimples{
     this.valor = valor;
   }
   execute(){
-    listenerData.setAmbiente(this.id, this.valor);
+    listenerData.setAmbiente(this.id.toString(), this.valor);
   }
 }
 exports.ValorSimples = ValorSimples;
@@ -15,9 +15,12 @@ class DeclVariavel{
     this.valor = valor;
   }
   execute(){
-    this.ids.forEach(function(entry, valor = this.valor) {
-      listenerData.setAmbiente(entry, valor);
+    this.ids.forEach(element => {
+      this.setAmbiente(element, this.valor);
     });
+  }
+  setAmbiente(entrada, valor){
+    listenerData.setAmbiente(entrada.toString(), valor);
   }
 }
 exports.DeclVariavel = DeclVariavel;
@@ -29,6 +32,12 @@ class Comparacao{
     this.operacao = operacao;
   }
   execute(){
+    if(this.expr1.execute){
+      this.expr1 = this.expr1.execute();
+    }
+    if(this.expr2.execute){
+      this.expr2 = this.expr2.execute();
+    }
     switch(this.operacao) {
       case '>':
         if(this.expr1 > this.expr2) return true;
@@ -71,6 +80,15 @@ class Exprlist{
 }
 exports.Exprlist = Exprlist;
 
+class ID{
+  constructor(variavel){
+    this.variavel = variavel;
+  }
+  execute(){
+    return listenerData.getAmbiente(this.variavel.toString());
+  }
+}
+exports.ID = ID;
 
 class Enquanto{
   constructor(condicao, bloco){

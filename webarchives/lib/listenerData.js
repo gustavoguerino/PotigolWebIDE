@@ -9,16 +9,19 @@ class ListenerData {
     return this.values.get(node);
   }
   setAmbiente(name, value){
-    this.values.set(name,value);
+    this.ambiente.set(name,value);
   }
   getAmbiente(name){
-    return this.values.get(name);
+    return this.ambiente.get(name);
   }
   cleanData(){
     this.warnings = [];
     this.errors = [];
-    this.ambiente = [];
+    this.ambiente = new Map();
     this.values = new Map();
+  }
+  getAllAmbiente(){
+    return this.ambiente;
   }
 }
 
