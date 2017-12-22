@@ -28,7 +28,7 @@ class Comparacao{
     this.expr2 = expr2;
     this.operacao = operacao;
   }
-  execute(){
+  execute(){//('>'|'>='|'<'|'<='|'=='|'<>')
     switch(this.operacao) {
       case '>':
         if(this.expr1 > this.expr2) return true;
@@ -36,6 +36,22 @@ class Comparacao{
         break;
       case '<':
         if(this.expr1 < this.expr2) return true;
+        else return false
+        break;
+      case '>=':
+        if(this.expr1 >= this.expr2) return true;
+        else return false
+        break;
+      case '<=':
+        if(this.expr1 <= this.expr2) return true;
+        else return false
+        break;
+      case '==':
+        if(this.expr1 == this.expr2) return true;
+        else return false
+        break;
+      case '<>':
+        if(this.expr1 != this.expr2) return true;
         else return false
         break;
     } 
