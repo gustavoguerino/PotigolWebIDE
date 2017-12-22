@@ -28,7 +28,7 @@ class Comparacao{
     this.expr2 = expr2;
     this.operacao = operacao;
   }
-  execute(){//('>'|'>='|'<'|'<='|'=='|'<>')
+  execute(){
     switch(this.operacao) {
       case '>':
         if(this.expr1 > this.expr2) return true;
@@ -70,6 +70,18 @@ class Exprlist{
   }
 }
 exports.Exprlist = Exprlist;
+
+
+class Enquanto{
+  constructor(condicao, bloco){
+    this.condicao = condicao;
+    this.bloco = bloco;
+  }
+  execute(){
+    while(this.condicao.execute()) this.bloco.execute();
+  }
+}
+exports.Enquanto = Enquanto;
 
 class Senaose{
   constructor(expr, exprlist){
