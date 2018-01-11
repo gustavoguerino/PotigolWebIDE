@@ -22,60 +22,31 @@ class Loader extends potigolListener {
       if(elemento) elemento.execute();
     });
   }
-  
-  exitInst(ctx){
-    // Para cada elemento de inst atribuir o filho ao node
+  upChildrens(ctx){
     ctx.children.forEach(element => {
       // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
       // evitando erros de execução
       let elemento = listenerData.getValue(element);
       if(elemento) listenerData.setValue(ctx, elemento);
     });
+  }
+  exitInst(ctx){
+    this.upChildrens(ctx);
   }
   exitDecl(ctx){
-    // Para cada declaração atribuir o filho ao node
-    ctx.children.forEach(element => {
-      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
-      // evitando erros de execução
-      let elemento = listenerData.getValue(element);
-      if(elemento) listenerData.setValue(ctx, elemento);
-    });
+    this.upChildrens(ctx);
   }
   exitDecisao(ctx){
-    //Para cada declaração atribuir o filho ao node
-    ctx.children.forEach(element => {
-      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
-      // evitando erros de execução
-      let elemento = listenerData.getValue(element);
-      if(elemento) listenerData.setValue(ctx, elemento);
-    });
+    this.upChildrens(ctx);
   }
   exitDecis(ctx){
-    //Para cada declaração atribuir o filho ao node
-    ctx.children.forEach(element => {
-      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
-      // evitando erros de execução
-      let elemento = listenerData.getValue(element);
-      if(elemento) listenerData.setValue(ctx, elemento);
-    });
+    this.upChildrens(ctx);
   }
   exitRepeticao(ctx){
-    //Para cada declaração atribuir o filho ao node
-    ctx.children.forEach(element => {
-      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
-      // evitando erros de execução
-      let elemento = listenerData.getValue(element);
-      if(elemento) listenerData.setValue(ctx, elemento);
-    });
+    this.upChildrens(ctx);
   }
   exitLaco(ctx){
-    //Para cada declaração atribuir o filho ao node
-    ctx.children.forEach(element => {
-      // Verifica a existencia do node no get value, caso o mesmo ainda não tenha sido implementado,
-      // evitando erros de execução
-      let elemento = listenerData.getValue(element);
-      if(elemento) listenerData.setValue(ctx, elemento);
-    });
+    this.upChildrens(ctx);
   }
   /* -------------------------------------------------------------- 
   *
@@ -91,7 +62,6 @@ class Loader extends potigolListener {
     ctx.senaose().forEach(element => {
       senaose.push(element)
     });
-    console.log(condicao);
     listenerData.setValue(ctx, new potigol.Se(condicao,entao,senao,senaose));
   }
   exitEscolha(ctx){
